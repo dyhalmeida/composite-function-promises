@@ -13,7 +13,7 @@ function readDirectory(path = '') {
     })
 }
 
-function elementsTerminatedWith(pattern = '') {
+function filterTerminateWith(pattern = '') {
     return function(arr = []) {
         return arr.filter(el => el.endsWith(pattern));
     }
@@ -40,7 +40,7 @@ function merge(arr = []) {
     return arr.join(' ');
 }
 
-function splitTextBy(symbol = '') {
+function splitBy(symbol = '') {
     return function(text = '') {
         return text.split(symbol);
     }
@@ -73,7 +73,7 @@ function clearSymbols(symbols = []) {
     }
 }
 
-function group(words = []) {
+function agroup(words = []) {
     return Object.values(
         words.reduce((acc, word) => {
             const el = word.toLowerCase();
@@ -96,14 +96,14 @@ function orderBy(attr, order = 'asc') {
 
 module.exports = {
     readDirectory,
-    elementsTerminatedWith,
+    filterTerminateWith,
     readFiles,
     merge,
-    splitTextBy,
+    splitBy,
     clearEmpty,
     clearIfInclude,
     clearIfOnlyIncludeNumbers,
     clearSymbols,
-    group,
+    agroup,
     orderBy,
 }

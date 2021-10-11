@@ -1,15 +1,15 @@
 const { join } = require('path');
 const { 
     readDirectory, 
-    elementsTerminatedWith, 
+    filterTerminateWith, 
     readFiles,
     merge,
-    splitTextBy,
+    splitBy,
     clearEmpty,
     clearIfInclude,
     clearIfOnlyIncludeNumbers,
     clearSymbols,
-    group,
+    agroup,
     orderBy,
 } = require('./utils');
 
@@ -22,19 +22,19 @@ const symbols = [
 ]
 
 readDirectory(path)
-    .then(elementsTerminatedWith('.srt'))
+    .then(filterTerminateWith('.srt'))
     .then(readFiles)
     .then(merge)
-    .then(splitTextBy('\n'))
+    .then(splitBy('\n'))
     .then(clearEmpty)
     .then(clearIfInclude('-->'))
     .then(clearIfOnlyIncludeNumbers)
     .then(clearSymbols(symbols))
     .then(merge)
-    .then(splitTextBy(' '))
+    .then(splitBy(' '))
     .then(clearEmpty)
     .then(clearIfOnlyIncludeNumbers)
-    .then(group)
+    .then(agroup)
     .then(orderBy('quantity', 'desc'))
     .then(console.log);
 
